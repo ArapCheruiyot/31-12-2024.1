@@ -1,19 +1,25 @@
+const CLIENT_ID = "958416089916-1embl17stmkectofeqb74c54ccs38rb5.apps.googleusercontent.com";
+const API_SCOPES = "https://www.googleapis.com/auth/drive.file";
+
 function initializeGoogleSignIn() {
     google.accounts.id.initialize({
-        client_id: '
-147934510488-2eeg7uct5hl78a29igth97057perrg3f.apps.googleusercontent.com', // Ensure this is your correct client ID
+        client_id: CLIENT_ID,
         callback: handleCredentialResponse
     });
+
     google.accounts.id.renderButton(
         document.getElementById("g_id_signin"),
-        { theme: "outline", size: "large" }  // Customize button appearance
+        { theme: "outline", size: "large" } // Customize button appearance
     );
 }
 
 function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
     console.log("ID Token: " + responsePayload);
-    // Proceed with further actions, such as checking authentication status
+    // Store access token and proceed with other actions like enabling file upload
+    const accessToken = responsePayload.access_token;
+    localStorage.setItem("access_token", accessToken);
+    enableUI();
 }
 
 function decodeJwtResponse(token) {
@@ -23,4 +29,8 @@ function decodeJwtResponse(token) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
     return JSON.parse(jsonPayload);
+}
+
+function getAccessToken() {
+    return localStorage.getItem("access_token");
 }
