@@ -1,33 +1,26 @@
-import { CLIENT_ID, API_SCOPES } from "./config.js";
-
-let accessToken = null;
-
-function initializeAuth() {
+function initializeGoogleSignIn() {
     google.accounts.id.initialize({
-        client_id: CLIENT_ID,
-        callback: handleSignIn,
+        client_id: '
+147934510488-2eeg7uct5hl78a29igth97057perrg3f.apps.googleusercontent.com', // Ensure this is your correct client ID
+        callback: handleCredentialResponse
     });
-
     google.accounts.id.renderButton(
         document.getElementById("g_id_signin"),
-        { theme: "outline", size: "large" }
+        { theme: "outline", size: "large" }  // Customize button appearance
     );
 }
 
-function handleSignIn(response) {
-    const credential = response.credential;
-    fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log("User Info:", data);
-            accessToken = data.access_token;
-            enableUI();
-        })
-        .catch(err => console.error("Authentication error:", err));
+function handleCredentialResponse(response) {
+    const responsePayload = decodeJwtResponse(response.credential);
+    console.log("ID Token: " + responsePayload);
+    // Proceed with further actions, such as checking authentication status
 }
 
-function getAccessToken() {
-    return accessToken;
+function decodeJwtResponse(token) {
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
 }
-
-export { initializeAuth, getAccessToken };
