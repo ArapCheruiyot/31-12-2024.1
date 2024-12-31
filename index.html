@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID">
+    <title>File Uploader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>File Uploader with Google Drive Integration</h1>
+    </header>
+    <main class="container">
+        <!-- Google Sign-In Button -->
+        <div class="signin-container">
+            <div id="g_id_signin" class="google-signin"></div>
+        </div>
+
+        <!-- File Selection Section -->
+        <div class="file-actions">
+            <label for="fileInput" class="btn choose-file">Choose Files</label>
+            <input type="file" id="fileInput" multiple hidden>
+            <button id="deleteSelectedBtn" class="btn delete-files" disabled>Delete Selected</button>
+            <button id="uploadBtn" class="btn upload-files" disabled>Upload Files</button>
+        </div>
+
+        <!-- File List Display -->
+        <div id="fileList" class="file-list"></div>
+
+        <!-- Upload Status -->
+        <div id="uploadStatus" class="upload-status"></div>
+    </main>
+
+    <!-- Include Google Platform Library -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Link to External JavaScript Files -->
+    <script src="js/config.js" defer></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/uiHandler.js" defer></script>
+    <script src="js/fileUploader.js" defer></script>
+    <script src="js/utilities.js" defer></script>
+</body>
+</html>

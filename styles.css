@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.choose-file {
+    background-color: #28a745;
+}
+
+.choose-file:hover {
+    background-color: #218838;
+}
+
+.delete-files {
+    background-color: #dc3545;
+}
+
+.delete-files:hover {
+    background-color: #c82333;
+}
+
+/* File List */
+.file-list {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    background: #f9f9f9;
+    min-height: 100px;
+    overflow-y: auto;
+}
+
+.file-list div {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-list div:last-child {
+    border-bottom: none;
+}
+
+/* Upload Status */
+.upload-status {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
